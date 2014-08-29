@@ -15,6 +15,7 @@ class PeopleController < ApplicationController
 	end
 
 	def create
+		binding.pry
 		@person = Person.new(person_params)
 		#@person.creator = current_user	
 
