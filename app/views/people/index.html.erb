@@ -1,0 +1,12 @@
+<%= render 'shared/content_title', title: 'People Index' %>
+
+<%#  @people.each do |person| %>
+  <%#  link_to person.title, person_path(person) %> 
+ <%#  end %>
+<ul>
+ <% @people.each do |person| %>
+ <li>
+ 	<%= person.firstname %> | <%= link_to 'edit', edit_person_path(person) %>
+ </li>
+ <% end %>
+</ul>

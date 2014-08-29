@@ -1,0 +1,64 @@
+<% if @person.errors.any? %>
+<div class="alert alert.error">
+	<h5>There were some errors!</h5>
+		<ul>
+			<% @person.errors.full_messages.each do |msg| %>
+			<li><%= msg %></li>
+			<% end %>
+		</ul>
+</div>
+<% end %>
+
+<%= form_for @person do |f| %>
+<div class="well control-group">
+	<%= f.label :department_id, 'Department ID' %>
+	<%= f.text_field :department_id %>
+
+	<%= f.label :firstname, 'First name' %>
+	<%= f.text_field :firstname, :size => 15, autofocus: true %><br>
+
+	<%= f.label :middlename, 'Middle name' %>
+	<%= f.text_field :middlename %><br>
+
+	<%= f.label :lastname, 'Last name' %>
+	<%= f.text_field :lastname %><br>
+
+	<%= f.label :email %>
+	<%= f.text_field :email, :size => 30, :placeholder => '@auburn.edu' %>
+
+	<%= f.label :user_id, 'AU user name' %>
+	<%= f.text_field :user_id %>
+
+	<%= f.label :officeaddress, 'Office address' %>
+	<%= f.text_field :officeaddress %>
+
+	<%= f.label :phone %>
+	<%= f.text_field :phone %>
+
+	<%= f.label :interestareas, 'Interest areas' %>
+	<%= f.text_area :interestareas %>
+
+	<%= f.label :languagestaught, 'Languages taught' %>
+	<%= f.text_field :languagestaught %>
+	<fieldset>
+		<legend>Office Hours</legend>
+			<%= f.label :monday %>
+			<%= f.text_field :monday, :size => 30 %>
+
+			<%= f.label :tuesday %>
+			<%= f.text_field :tuesday, :size => 30 %>
+
+			<%= f.label :wednesday %>
+			<%= f.text_field :wednesday, :size => 30 %>
+
+			<%= f.label :thursday %>
+			<%= f.text_field :thursday, :size => 30 %>
+
+			<%= f.label :friday %>
+			<%= f.text_field :friday, :size => 30 %>
+	</fieldset>		
+</div>
+
+	<%= f.submit(@person.new_record? ? 'Create Person' : 'Update Person', class: 'btn btn-primary') %>
+
+<% end %>
