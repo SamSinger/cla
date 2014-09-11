@@ -1,12 +1,19 @@
-<%= render 'shared/content_title', title: 'People Index' %>
+<%= render 'shared/content_title', title: 'People Keeper' %>
+ 
 
-<%#  @people.each do |person| %>
-  <%#  link_to person.title, person_path(person) %> 
- <%#  end %>
-<ul>
- <% @people.each do |person| %>
- <li>
- 	<%= person.firstname %> | <%= link_to 'edit', edit_person_path(person) %>
- </li>
- <% end %>
-</ul>
+<%= link_to 'Add new person', new_person_path, class: 'btn btn-success' %>
+
+<div style="margin-top: 1em;">
+<% @people.each do |person| %> 
+	<div class="row" style="margin-bottom: .5em;">
+		<div class="col-md-2"> 
+			<%= person.firstname %> <%= person.lastname %>
+		</div>		
+			<div class="col-lg-3">
+				<%= link_to edit_person_path(person) do %>
+				<div class="btn btn-warning"><i class="glyphicon glyphicon-pencil"></i> Edit</div>
+				<% end %>
+			</div>		
+	</div>
+<% end %>
+</div>

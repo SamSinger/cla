@@ -12,10 +12,11 @@ class PeopleController < ApplicationController
 
 	def new
 		@person = Person.new
+		
 	end
 
 	def create
-		binding.pry
+		#binding.pry
 		@person = Person.new(person_params)
 		#@person.creator = current_user	
 
@@ -27,10 +28,14 @@ class PeopleController < ApplicationController
 		end	
 	end
 
-	def edit; end
+	def edit
+		@person = Person.find(params[:id])
+	end
 
 	def update
-		if @person.update(person_params)
+		#binding.pry
+		@person = Person.find(params[:id])
+		if @person.update_attributes(person_params)
 			flash[:notice] = "Your person profile was updated."
 			redirect_to people_path
 		else

@@ -1,19 +1,23 @@
-<% if @person.errors.any? %>
+<%  if @person.errors.any? %>
 <div class="alert alert.error">
 	<h5>There were some errors!</h5>
 		<ul>
-			<% @person.errors.full_messages.each do |msg| %>
-			<li><%= msg %></li>
-			<% end %>
+			<%  @person.errors.full_messages.each do |msg| %>
+			<li><%  msg %></li>
+			<%  end %>
 		</ul>
 </div>
-<% end %>
+<%  end %>
 
 <%= form_for @person do |f| %>
 <div class="well control-group">
-	<%= f.label :department_id, 'Department ID' %>
-	<%= f.text_field :department_id %>
+	<%= f.label :department_id, 'Department name' %>
+ 	<%= f.select("person", "department_id", Department.all.collect  {|d| [ d.name, d.id ]}, {include_blank: 'None'}) %>
 
+
+
+
+<hr />
 	<%= f.label :firstname, 'First name' %>
 	<%= f.text_field :firstname, :size => 15, autofocus: true %><br>
 
