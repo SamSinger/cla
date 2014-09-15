@@ -33,7 +33,7 @@ class PeopleController < ApplicationController
 	end
 
 	def update
-		#binding.pry
+	   
 		@person = Person.find(params[:id])
 		if @person.update_attributes(person_params)
 			flash[:notice] = "Your person profile was updated."
