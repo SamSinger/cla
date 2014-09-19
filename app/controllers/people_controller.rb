@@ -16,7 +16,7 @@ class PeopleController < ApplicationController
 	end
 
 	def create
-		#binding.pry
+		binding.pry
 		@person = Person.new(person_params)
 		#@person.creator = current_user	
 
@@ -36,6 +36,7 @@ class PeopleController < ApplicationController
 	   
 		@person = Person.find(params[:id])
 		if @person.update_attributes(person_params)
+
 			flash[:notice] = "Your person profile was updated."
 			redirect_to people_path
 		else

@@ -12,14 +12,16 @@
 
 <%= form_for @person do |f| %>
 <div class="well control-group">
-	 <!-- <%#  f.label "Departments" %>
+	  <%=  f.label "Departments" %>
  	<%#  f.collection_select("person", "department_id", Department.all  {|d| [ d.name, d.id ]}, {include_blank: 'None'}) %>
--->	
+
+ 	<%= f.select("person", "department_id", Department.all.collect {|d| [ d.name, d.id ] }, {include_blank: 'None'}) %>
  
-      <%= f.label "Departments" %>
-      <%= f.collection_check_boxes :department_id, Department.all, :id, :name do |cb|%>
-        <% cb.label(class: "checkbox inline") {cb.check_box(class: "checkbox") + cb.text} %>
-      <% end %>
+ 
+      <%# f.label "Departments" %>
+      <%# f.collection_check_boxes :department_id, Department.all, :id, :name do |cb|%>
+        <%# cb.label(class: "checkbox inline") {cb.check_box(class: "checkbox") + cb.text} %>
+      <%# end %>
    
 
 
