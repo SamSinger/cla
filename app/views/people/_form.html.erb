@@ -12,22 +12,14 @@
 
 <%= form_for @person do |f| %>
 <div class="well control-group">
-	  <%=  f.label "Departments" %>
- 	<%#  f.collection_select("person", "department_id", Department.all  {|d| [ d.name, d.id ]}, {include_blank: 'None'}) %>
+<div class="row">
+	<div class="col-md-6">
 
- 	<%= f.select("person", "department_id", Department.all.collect {|d| [ d.name, d.id ] }, {include_blank: 'None'}) %>
+	  <%=  f.label "Select a department" %> 	 
+ 	  <%= f.select("department_id", Department.all.collect {|d| [ d.name, d.id ] }, {include_blank: 'None'}) %>
+ 		<br /><br />
+  
  
- 
-      <%# f.label "Departments" %>
-      <%# f.collection_check_boxes :department_id, Department.all, :id, :name do |cb|%>
-        <%# cb.label(class: "checkbox inline") {cb.check_box(class: "checkbox") + cb.text} %>
-      <%# end %>
-   
-
-
-
-
-<hr />
 	<%= f.label :firstname, 'First name' %>
 	<%= f.text_field :firstname, :size => 15, autofocus: true %><br>
 
@@ -39,6 +31,8 @@
 
 	<%= f.label :email %>
 	<%= f.text_field :email, :size => 30, :placeholder => '@auburn.edu' %>
+
+	 
 
 	<%= f.label :user_id, 'AU user name' %>
 	<%= f.text_field :user_id %>
@@ -70,7 +64,14 @@
 
 			<%= f.label :friday %>
 			<%= f.text_field :friday, :size => 30 %>
-	</fieldset>		
+	</fieldset>	
+	</div>	
+<div class="col-md-6">
+	 
+    	<%= collection_check_boxes(:person, :category_ids, Category.all, :id, :name) %>
+	 
+ </div>
+</div>
 </div>
 
 	<%= f.submit(@person.new_record? ? 'Create Person' : 'Update Person', class: 'btn btn-primary') %>

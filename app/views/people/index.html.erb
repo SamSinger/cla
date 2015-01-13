@@ -6,14 +6,21 @@
 <div style="margin-top: 1em;">
 <% @people.each do |person| %> 
 	<div class="row" style="margin-bottom: .5em;">
-		<div class="col-md-2"> 
-			<%= person.firstname %> <%= person.lastname %>
+		<div class="col-md-3"> 
+			 <%= person.lastname %>, <%= person.firstname %> <%= person.middlename %>
 		</div>		
-			<div class="col-lg-3">
+			<% if logged_in? %>
+			<div class="col-md-1">
 				<%= link_to edit_person_path(person) do %>
-				<div class="btn btn-warning"><i class="glyphicon glyphicon-pencil"></i> Edit</div>
+				<div class="btn btn-warning"><i class="glyphicon glyphicon-pencil"></i> </div>
 				<% end %>
-			</div>		
+			</div>	
+			<% end %>	
+		<div class="col-md-1">
+				<%= link_to edit_person_path(person) do %>
+				<div class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i> </div>
+				<% end %>
+			</div>			
 	</div>
 <% end %>
 </div>

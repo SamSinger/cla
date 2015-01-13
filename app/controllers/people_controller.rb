@@ -1,8 +1,10 @@
 class PeopleController < ApplicationController
 
+	before_action :require_user, except: [:index, :show]
+
 	def index
 
-		@people = Person.all
+		@people = Person.order("lastname ASC")
 		
 	end
 
@@ -16,7 +18,7 @@ class PeopleController < ApplicationController
 	end
 
 	def create
-		binding.pry
+		#binding.pry
 		@person = Person.new(person_params)
 		#@person.creator = current_user	
 
@@ -33,7 +35,7 @@ class PeopleController < ApplicationController
 	end
 
 	def update
-	   
+	   #params[:product][:category_ids] ||= []
 		@person = Person.find(params[:id])
 		if @person.update_attributes(person_params)
 
@@ -43,6 +45,17 @@ class PeopleController < ApplicationController
 			render 'edit'
 		end
 	end
+
+	def delete
+		@person = Person.find(params[:id])
+	end
+
+	def destroy
+		@person = Person.find(params[:id]).destroy
+		flash[:notice] = "'{@person.lastname, @person.firstname}' destroyed successfully."
+		redirect_to(:action => 'index')
+	end
+
 
 	private
 		def person_params
